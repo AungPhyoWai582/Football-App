@@ -1,24 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import {BrowserRouter,Routes,Route, Navigate} from 'react-router-dom'
+
+import Bet from "./pages/bet/Bet";
+import TotalIn from "./pages/Report/TotalIn";
+import Navigation from "./components/navigation/Navigation";
+import Setting from "./pages/Setting/Setting";
+import Report from "./pages/reports/Report";
+import SarMal from "./pages/sarmalyawmal/SarMal";
+
 
 function App() {
+
+  const routes = <Routes>
+    <Route path="/*" element={<Navigate to="/game" replace />} />
+    <Route path="/game" element={<Bet />} />
+    <Route path="/lager" element={<TotalIn />} />
+    <Route path="/setting" element={<Setting />} />
+    <Route path="/report" element={<Report />} />
+    <Route path="/sarmal_yawmal" element={<SarMal />} />
+  </Routes>
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <BrowserRouter>
+    <div className="bg-white">
+      <Navigation />
+      <div className="h-screen p-2">
+        
+       {routes}
+      </div>
     </div>
+    </BrowserRouter>
   );
 }
 
